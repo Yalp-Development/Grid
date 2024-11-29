@@ -1,4 +1,4 @@
-class Script {
+class ScriptExecution {
     readonly name: string;
     readonly script: string;
     readonly arguments: any[];
@@ -10,4 +10,4 @@ class Script {
     }
 }
 
-export default Script;
+export default ScriptExecution;

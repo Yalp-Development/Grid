@@ -10,7 +10,7 @@ npm i https://github.com/Yalp-Development/Grid.git
 
 ## Usage
 ```js
-import { GridService, Job, Script } from "rocket-grid";
+import { GridService, Job, ScriptExecution } from "rocket-grid";
 
 // Connecting
 
@@ -22,7 +22,7 @@ console.log(await client.HelloWorld())
 
 const job = new Job("GridTest")
 
-const script = new Script("HelloWorld", "print(\"hello world\")")
+const script = new ScriptExecution("HelloWorld", "print(\"hello world\")")
 
 await client.OpenJobEx(job, script)
 ```
