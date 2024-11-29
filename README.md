@@ -10,7 +10,7 @@ npm i https://github.com/Yalp-Development/Grid.git
 
 ## Usage
 ```js
-import { GridService, Job, ScriptExecution } from "rocket-grid";
+import { GridService, Job, ScriptExecution } from "rocket-grid"
 
 // Connecting
 
