@@ -8,21 +8,4 @@ I took inspiration from [this project](https://github.com/megahdrive/rccclient-n
 npm i https://github.com/Yalp-Development/Grid.git
 ```
 
-## Usage
-```js
-import { GridService, Job, ScriptExecution } from "rocket-grid"
-
-// Connecting
-
-const client = new GridService("127.0.0.1", 64989)
-
-console.log(await client.HelloWorld())
-
-// Running a simple script
-
-const job = new Job("GridTest")
-
-const script = new ScriptExecution("HelloWorld", "print(\"hello world\")")
-
-await client.OpenJobEx(job, script)
-```
+### An example on how to use this library can be found [here](https://github.com/Yalp-Development/Grid/blob/master/src/test.ts)
