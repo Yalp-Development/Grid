@@ -1,5 +1,6 @@
-import type Job from "./Job.js";
+import type Job from "./grid/job.js";
 
+/* Grid Responses */
 export enum LuaType {
     LUA_TNIL = "LUA_TNIL",
     LUA_TBOOLEAN = "LUA_TBOOLEAN",
@@ -70,3 +71,35 @@ export interface GetVersionResponse {
 export interface HelloWorldResponse {
     HelloWorldResult?: string;
 }
+
+/* ThumbnailsRelay Responses */
+export interface PingResponse {
+    PingResult: string;
+}
+
+export interface IsAliveResponse {
+    IsAliveResult: boolean;
+}
+
+export interface RequestThumbnailGenerationExResponse {
+    RequestThumbnailGenerationExResult: {
+        Base64EncodedThumbnailData: string;
+        DependencyUrls: string[];
+    }
+}
+
+export interface GetStatsResponse {
+    CpuUsage: number;
+    RccServiceProcesses: number;
+    ProcessorCount: number;
+    TotalPhysicalMemoryGigabytes: number;
+    AvailablePhysicalMemoryGigabytes: number;
+    UploadSpeedKilobytesPerSecond: number;
+    DownloadSpeedKilobytesPerSecond: number;
+    RccVersion: string;
+    ThumbnailsRelayVersion: string;
+    LogicalProcessorCount: number;
+}
+
+// it is the same thing
+export type RequestAvatarThumbnailGenerationExResponse = RequestThumbnailGenerationExResponse

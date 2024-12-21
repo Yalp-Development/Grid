@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="ThumbnailsRelay" targetNamespace="http://roblox.com/"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+                  xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+                  xmlns:tns="http://roblox.com/"
+                  xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+                  xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <wsdl:types>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://roblox.com/"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:import namespace="http://schemas.microsoft.com/Message"/>
+            <xs:element name="IsAlive">
+                <xs:complexType/>
+            </xs:element>
+            <xs:element name="IsAliveResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="1" maxOccurs="1" name="IsAliveResult" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Ping">
+                <xs:complexType/>
+            </xs:element>
+            <xs:element name="PingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="PingResult" type="q1:StreamBody"
+                                    xmlns:q1="http://schemas.microsoft.com/Message"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="GetStats">
+                <xs:complexType/>
+            </xs:element>
+            <xs:element name="GetStatsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="GetStatsResult" type="tns:ServerStatistics"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="ServerStatistics">
+                <xs:sequence>
+                    <xs:element minOccurs="1" maxOccurs="1" name="CpuUsage" type="xs:float"/>
+                    <xs:element minOccurs="1" maxOccurs="1" name="RccServiceProcesses" type="xs:int"/>
+                    <xs:element minOccurs="1" maxOccurs="1" name="ProcessorCount" type="xs:int"/>
+                    <xs:element minOccurs="1" maxOccurs="1" name="TotalPhysicalMemoryGigabytes" type="xs:float"/>
+                    <xs:element minOccurs="1" maxOccurs="1" name="AvailablePhysicalMemoryGigabytes" type="xs:float"/>
+                    <xs:element minOccurs="1" maxOccurs="1" name="UploadSpeedKilobytesPerSecond" type="xs:float"/>
+                    <xs:element minOccurs="1" maxOccurs="1" name="DownloadSpeedKilobytesPerSecond" type="xs:float"/>
+                    <xs:element minOccurs="0" maxOccurs="1" name="RccVersion" type="xs:string"/>
+                    <xs:element minOccurs="0" maxOccurs="1" name="ThumbnailsRelayVersion" type="xs:string"/>
+                    <xs:element minOccurs="1" maxOccurs="1" name="LogicalProcessorCount" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="RequestThumbnailGenerationEx">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="1" maxOccurs="1" name="thumbnailType" type="tns:ThumbnailType"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="imageFormat" type="tns:ImageFormat"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="width" type="xs:int"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="height" type="xs:int"/>
+                        <xs:element minOccurs="0" maxOccurs="1" name="assetUrl" type="xs:string"/>
+                        <xs:element minOccurs="0" maxOccurs="1" name="baseUrl" type="xs:string"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="mannequinOrUniverseId" nillable="true" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:simpleType name="ThumbnailType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Avatar"/>
+                    <xs:enumeration value="AvatarHeadShot"/>
+                    <xs:enumeration value="Face"/>
+                    <xs:enumeration value="Decal"/>
+                    <xs:enumeration value="Gear"/>
+                    <xs:enumeration value="Hat"/>
+                    <xs:enumeration value="Head"/>
+                    <xs:enumeration value="MeshPart"/>
+                    <xs:enumeration value="Mesh"/>
+                    <xs:enumeration value="Model"/>
+                    <xs:enumeration value="Package"/>
+                    <xs:enumeration value="Pants"/>
+                    <xs:enumeration value="Place"/>
+                    <xs:enumeration value="Shirt"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:simpleType name="ImageFormat">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="Jpeg"/>
+                    <xs:enumeration value="Png"/>
+                    <xs:enumeration value="Bmap"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="RequestThumbnailGenerationExResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="RequestThumbnailGenerationExResult" type="tns:ThumbnailGenerationResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:complexType name="ThumbnailGenerationResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="1" name="Base64EncodedThumbnailData" type="xs:string"/>
+                    <xs:element minOccurs="0" maxOccurs="1" name="DependencyUrls" type="tns:ArrayOfString"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="ArrayOfString">
+                <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="RequestAvatarThumbnailGenerationEx">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="1" maxOccurs="1" name="thumbnailType" type="tns:ThumbnailType"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="imageFormat" type="tns:ImageFormat"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="width" type="xs:int"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="height" type="xs:int"/>
+                        <xs:element minOccurs="0" maxOccurs="1" name="characterAppearaance" type="xs:string"/>
+                        <xs:element minOccurs="0" maxOccurs="1" name="baseUrl" type="xs:string"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="quadratic" nillable="true" type="xs:boolean"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="baseHatZoom" nillable="true" type="xs:int"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="maxHatZoom" nillable="true" type="xs:int"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="cameraOffsetX" nillable="true" type="xs:int"/>
+                        <xs:element minOccurs="1" maxOccurs="1" name="cameraOffsetY" nillable="true" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="RequestAvatarThumbnailGenerationExResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="RequestAvatarThumbnailGenerationExResult" type="tns:ThumbnailGenerationResponse"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/Message"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   xmlns:tns="http://schemas.microsoft.com/Message">
+            <xs:simpleType name="StreamBody">
+                <xs:restriction base="xs:base64Binary"/>
+            </xs:simpleType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="ThumbnailsRelay_IsAlive_InputMessage">
+        <wsdl:part name="parameters" element="tns:IsAlive"/>
+    </wsdl:message>
+    <wsdl:message name="ThumbnailsRelay_IsAlive_OutputMessage">
+        <wsdl:part name="parameters" element="tns:IsAliveResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ThumbnailsRelay_Ping_InputMessage">
+        <wsdl:part name="parameters" element="tns:Ping"/>
+    </wsdl:message>
+    <wsdl:message name="ThumbnailsRelay_Ping_OutputMessage">
+        <wsdl:part name="parameters" element="tns:PingResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ThumbnailsRelay_GetStats_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetStats"/>
+    </wsdl:message>
+    <wsdl:message name="ThumbnailsRelay_GetStats_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetStatsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ThumbnailsRelay_RequestThumbnailGenerationEx_InputMessage">
+        <wsdl:part name="parameters" element="tns:RequestThumbnailGenerationEx"/>
+    </wsdl:message>
+    <wsdl:message name="ThumbnailsRelay_RequestThumbnailGenerationEx_OutputMessage">
+        <wsdl:part name="parameters" element="tns:RequestThumbnailGenerationExResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ThumbnailsRelay_RequestAvatarThumbnailGenerationEx_InputMessage">
+        <wsdl:part name="parameters" element="tns:RequestAvatarThumbnailGenerationEx"/>
+    </wsdl:message>
+    <wsdl:message name="ThumbnailsRelay_RequestAvatarThumbnailGenerationEx_OutputMessage">
+        <wsdl:part name="parameters" element="tns:RequestAvatarThumbnailGenerationExResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="ThumbnailsRelay">
+        <wsdl:operation name="IsAlive">
+            <wsdl:input wsaw:Action="http://roblox.com/ThumbnailsRelay/IsAlive" message="tns:ThumbnailsRelay_IsAlive_InputMessage"/>
+            <wsdl:output wsaw:Action="http://roblox.com/ThumbnailsRelay/IsAliveResponse" message="tns:ThumbnailsRelay_IsAlive_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="Ping">
+            <wsdl:input wsaw:Action="http://roblox.com/ThumbnailsRelay/Ping" message="tns:ThumbnailsRelay_Ping_InputMessage"/>
+            <wsdl:output wsaw:Action="http://roblox.com/ThumbnailsRelay/PingResponse" message="tns:ThumbnailsRelay_Ping_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetStats">
+            <wsdl:input wsaw:Action="http://roblox.com/ThumbnailsRelay/GetStats" message="tns:ThumbnailsRelay_GetStats_InputMessage"/>
+            <wsdl:output wsaw:Action="http://roblox.com/ThumbnailsRelay/GetStatsResponse" message="tns:ThumbnailsRelay_GetStats_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="RequestThumbnailGenerationEx">
+            <wsdl:input wsaw:Action="http://roblox.com/ThumbnailsRelay/RequestThumbnailGenerationEx" message="tns:ThumbnailsRelay_RequestThumbnailGenerationEx_InputMessage"/>
+            <wsdl:output wsaw:Action="http://roblox.com/ThumbnailsRelay/RequestThumbnailGenerationExResponse" message="tns:ThumbnailsRelay_RequestThumbnailGenerationEx_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="RequestAvatarThumbnailGenerationEx">
+            <wsdl:input wsaw:Action="http://roblox.com/ThumbnailsRelay/RequestAvatarThumbnailGenerationEx" message="tns:ThumbnailsRelay_RequestAvatarThumbnailGenerationEx_InputMessage"/>
+            <wsdl:output wsaw:Action="http://roblox.com/ThumbnailsRelay/RequestAvatarThumbnailGenerationExResponse" message="tns:ThumbnailsRelay_RequestAvatarThumbnailGenerationEx_OutputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ThumbnailsRelay" type="tns:ThumbnailsRelay">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="IsAlive">
+            <soap:operation soapAction="http://roblox.com/ThumbnailsRelay/IsAlive" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Ping">
+            <soap:operation soapAction="http://roblox.com/ThumbnailsRelay/Ping" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetStats">
+            <soap:operation soapAction="http://roblox.com/ThumbnailsRelay/GetStats" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="RequestThumbnailGenerationEx">
+            <soap:operation soapAction="http://roblox.com/ThumbnailsRelay/RequestThumbnailGenerationEx" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="RequestAvatarThumbnailGenerationEx">
+            <soap:operation soapAction="http://roblox.com/ThumbnailsRelay/RequestAvatarThumbnailGenerationEx" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ThumbnailsRelay">
+        <wsdl:port name="ThumbnailsRelay" binding="tns:ThumbnailsRelay">
+            <soap:address location="http://localhost:64988/"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

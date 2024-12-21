@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "soap": "^1.1.6",
-    "copyfiles": "^2.4.1",
+    "copyfiles": "^2.4.1"
   },
   "devDependencies": {
     "@types/node": "^22.10.1",

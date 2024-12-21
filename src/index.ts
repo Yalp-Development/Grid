@@ -1,7 +1,7 @@
-export { default as Job } from "./modules/Job.js"
+export { default as Job } from "./modules/grid/job.js"
 
-export { default as GridService } from "./modules/Grid.js"
+export { default as GridService } from "./modules/grid/index.js"
 
-export { default as ScriptExecution } from "./modules/ScriptExecution.js"
+export { default as ThumbnailsRelay } from "./modules/thumbnail/index.js"
 
-export type * as Responses from "./modules/Response.js"
+export { default as ScriptExecution } from "./modules/grid/script.js"
