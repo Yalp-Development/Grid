@@ -1,4 +1,4 @@
-import type * as Responses from "../responses.js"
+import type * as Responses from "../responses.js";
 import { callToService } from "../soap.js";
 import { fileURLToPath } from "url";
 import type { ImageFormat, ThumbnailType } from "./enums.js";
@@ -18,16 +18,19 @@ class ThumbnailsRelay {
         return callToService(wsdl, this.url, sender, options);
     }
 
-    public async Ping(): Promise<Responses.PingResponse> {
-        return this.callToService("Ping", {});
+    public async Ping() {
+        const result: Responses.PingResponse = await this.callToService("Ping", {});
+        return result.PingResult;
     }
 
-    public async IsAlive(): Promise<Responses.IsAliveResponse> {
-        return this.callToService("IsAlive", {});
+    public async IsAlive() {
+        const result: Responses.IsAliveResponse = await this.callToService("IsAlive", {});
+        return result.IsAliveResult;
     }
 
-    public async GetStats(): Promise<Responses.GetStatsResponse> {
-        return this.callToService("GetStats", {});
+    public async GetStats() {
+        const result: Responses.GetStatsResponse = await this.callToService("GetStats", {});
+        return result.GetStatsResult;
     }
 
     public async RequestThumbnailGenerationEx(
@@ -38,16 +41,19 @@ class ThumbnailsRelay {
         assetUrl: string,
         baseUrl: string,
         mannequinOrUniverseId: number
-    ): Promise<Responses.RequestThumbnailGenerationExResponse> {
-        return this.callToService("RequestThumbnailGenerationEx", {
-            thumbnailType,
-            imageFormat,
-            width,
-            height,
-            assetUrl,
-            baseUrl,
-            mannequinOrUniverseId,
-        });
+    ) {
+        const result: Responses.RequestThumbnailGenerationExResponse =
+            await this.callToService("RequestThumbnailGenerationEx", {
+                thumbnailType,
+                imageFormat,
+                width,
+                height,
+                assetUrl,
+                baseUrl,
+                mannequinOrUniverseId,
+            });
+        
+        return result.RequestThumbnailGenerationExResult;
     }
 
     public async RequestAvatarThumbnailGenerationEx(
@@ -61,21 +67,24 @@ class ThumbnailsRelay {
         baseHatZoom: number,
         maxHatZoom: number,
         cameraOffsetX: number,
-        cameraOffsetY: number,
-    ): Promise<Responses.RequestAvatarThumbnailGenerationExResponse> {
-        return this.callToService("RequestAvatarThumbnailGenerationEx", {
-            thumbnailType,
-            imageFormat,
-            width,
-            height,
-            characterAppearaance: characterAppearance, // roblox typo moment
-            baseUrl,
-            quadratic,
-            baseHatZoom,
-            maxHatZoom,
-            cameraOffsetX,
-            cameraOffsetY,
-        });
+        cameraOffsetY: number
+    ) {
+        const result: Responses.RequestAvatarThumbnailGenerationExResponse =
+            await this.callToService("RequestAvatarThumbnailGenerationEx", {
+                thumbnailType,
+                imageFormat,
+                width,
+                height,
+                characterAppearaance: characterAppearance, // roblox typo moment
+                baseUrl,
+                quadratic,
+                baseHatZoom,
+                maxHatZoom,
+                cameraOffsetX,
+                cameraOffsetY,
+            });
+
+        return result.RequestAvatarThumbnailGenerationExResult;
     }
 }
 

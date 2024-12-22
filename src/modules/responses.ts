@@ -89,17 +89,24 @@ export interface RequestThumbnailGenerationExResponse {
 }
 
 export interface GetStatsResponse {
-    CpuUsage: number;
-    RccServiceProcesses: number;
-    ProcessorCount: number;
-    TotalPhysicalMemoryGigabytes: number;
-    AvailablePhysicalMemoryGigabytes: number;
-    UploadSpeedKilobytesPerSecond: number;
-    DownloadSpeedKilobytesPerSecond: number;
-    RccVersion: string;
-    ThumbnailsRelayVersion: string;
-    LogicalProcessorCount: number;
+    GetStatsResult: {
+        CpuUsage: number;
+        RccServiceProcesses: number;
+        ProcessorCount: number;
+        TotalPhysicalMemoryGigabytes: number;
+        AvailablePhysicalMemoryGigabytes: number;
+        UploadSpeedKilobytesPerSecond: number;
+        DownloadSpeedKilobytesPerSecond: number;
+        RccVersion: string;
+        ThumbnailsRelayVersion: string;
+        LogicalProcessorCount: number;
+    }
 }
 
 // it is the same thing
-export type RequestAvatarThumbnailGenerationExResponse = RequestThumbnailGenerationExResponse
+export type RequestAvatarThumbnailGenerationExResponse = {
+    RequestAvatarThumbnailGenerationExResult: {
+        Base64EncodedThumbnailData: string;
+        DependencyUrls: string[];
+    }
+}
